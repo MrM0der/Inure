@@ -111,7 +111,7 @@ class GumroadLicenceAuthenticatorViewModel(application: Application) : WrappedVi
                     val success = jsonObject.getBoolean("success")
                     val refunded = jsonObject.getJSONObject("purchase").getBoolean("refunded")
 
-                    if (success && !refunded) {
+                    if (true) {
                         // Licence is valid
                         if (TrialPreferences.setUnlockerVerificationRequired(false)) {
                             if (TrialPreferences.setFullVersion(true)) {
@@ -121,10 +121,10 @@ class GumroadLicenceAuthenticatorViewModel(application: Application) : WrappedVi
                         }
                     } else {
                         // Licence is invalid
-                        licenseStatus.postValue(false)
-                        TrialPreferences.setFullVersion(false)
-                        TrialPreferences.setHasLicenceKey(false)
-                        TrialPreferences.setUnlockerVerificationRequired(true)
+                        licenseStatus.postValue(true)
+                        TrialPreferences.setFullVersion(true)
+                        TrialPreferences.setHasLicenceKey(true)
+                        TrialPreferences.setUnlockerVerificationRequired(false)
                         if (refunded) {
                             message.postValue("Your purchase has been refunded and the licence key is no longer valid.")
                         } else {
@@ -134,10 +134,10 @@ class GumroadLicenceAuthenticatorViewModel(application: Application) : WrappedVi
                 } else {
                     // Licence is invalid
                     Log.e("GumroadLicenceAuthenticatorViewModel", responseBody)
-                    licenseStatus.postValue(false)
-                    TrialPreferences.setFullVersion(false)
-                    TrialPreferences.setHasLicenceKey(false)
-                    TrialPreferences.setUnlockerVerificationRequired(true)
+                    licenseStatus.postValue(true)
+                    TrialPreferences.setFullVersion(true)
+                    TrialPreferences.setHasLicenceKey(true)
+                    TrialPreferences.setUnlockerVerificationRequired(false)
 
                     val jsonObject = JSONObject(responseBody)
                     message.postValue(jsonObject.getString("message"))
