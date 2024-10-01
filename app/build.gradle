@@ -96,8 +96,8 @@ android {
         }
         beta {
             dimension "version"
-            applicationIdSuffix ".beta"
-            versionNameSuffix "-test"
+            //applicationIdSuffix ".beta"
+            //versionNameSuffix "-test"
 
             // Remove permissions for beta build
             manifestPlaceholders = [
