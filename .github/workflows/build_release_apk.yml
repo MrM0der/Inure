@@ -19,12 +19,6 @@ jobs:
                     distribution: 'temurin'
                     cache: 'gradle'
 
-            -   name: Decode Keystore
-                id: decode_keystore
-                uses: timheuer/base64-to-file@v1
-                with:
-                    fileName: 'keystore/key.jks'
-                    encodedString: ${{ secrets.SIGN_KEY }}
 
             -   name: Build GitHub Release APK
                 run: |
